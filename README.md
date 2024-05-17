@@ -5,8 +5,6 @@ Com interface intuitiva, este aplicativo oferece uma maneira conveniente e centr
 e acessar todos os seus aplicativos instalados.
 
 ## Principais Recursos:
-{collapsible="true" default-state="expanded"}
-
 - **Visualização Organizada**: O aplicativo apresenta visualização de todos os aplicativos instalados no sistema, 
 que já foram mapeados, facilitando a localização e o acesso rápido aos programas desejados.
 
@@ -24,23 +22,18 @@ permitindo que os usuários ajustem o layout, cores e outras configurações,
 de acordo com suas preferências individuais. **(Em breve)**
 
 ## Benefícios:
-{collapsible="true" default-state="collapsed"}
-
 - **Eficiência**: Economiza tempo e esforço dos usuários.
 
 
 - **Praticidade**: Simplifica a gestão de aplicativos, gerindo todos em um só lugar.
 
-## Tecnologias Utilizadas:
-{collapsible="true" default-state="collapsed"}
+## Linguagens Utilizadas:
+* [Flutter](https://flutter.dev/?gclsrc=aw.ds)
 
-### [Flutter]()
-### libs:
-
-[path_provider: ^2.1.3]()
-[window_manager: ^0.3.8]()
-[flutter_svg: ^2.0.10+1]()
-
+## Libs Utilizadas:
+* [path_provider: ^2.1.3](https://pub.dev/packages/path_provider)
+* [window_manager: ^0.3.8](https://pub.dev/packages/window_manager)
+* [flutter_svg: ^2.0.10+1](https://pub.dev/packages/flutter_svg)
 
 ## Como Usar:
 
