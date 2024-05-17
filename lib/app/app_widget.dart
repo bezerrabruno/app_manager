@@ -1,7 +1,6 @@
-import 'package:app_manager/app/theme/app_theme.dart';
+import 'package:app_manager/app/core/theme/app_theme.dart';
+import 'package:app_manager/app/modules/home/page/home_page.dart';
 import 'package:flutter/material.dart';
-
-import 'home/home_page.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
@@ -10,7 +9,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'App Manager',
-      theme: AppTheme.lightTheme(),
+      theme: AppTheme.darkTheme(),
       home: const HomePage(),
     );
   }

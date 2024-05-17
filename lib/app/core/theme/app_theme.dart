@@ -24,8 +24,19 @@ class AppTheme {
   static ThemeData darkTheme() {
     return ThemeData(
       primaryColor: const Color(0xFF027373),
-      colorScheme: const ColorScheme.dark(
+      floatingActionButtonTheme: null,
+      colorScheme: const ColorScheme(
+        brightness: Brightness.light,
         primary: Color(0xFF027373),
+        onPrimary: Color(0xFFFFF2EB),
+        secondary: Color(0xFFFFAE1F),
+        onSecondary: Color(0xFF262626),
+        error: Color(0xFFFF0601),
+        onError: Color(0xFF262626),
+        background: Color(0xFF262626),
+        onBackground: Color(0xFFFFF2EB),
+        surface: Color(0xFF6AABAB),
+        onSurface: Color(0xFF262626),
       ),
     );
   }

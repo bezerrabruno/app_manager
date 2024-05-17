@@ -1,34 +1,46 @@
-# App Manager v1.0.0+1
+# App Manager v1.0.2
 
-O App Manager é uma ferramenta versátil e eficiente projetada para simplificar a gestão de aplicativos em sistemas operacionais Windows.
-Com uma interface intuitiva, este aplicativo oferece uma maneira conveniente e centralizada de gerenciar e acessar todos os seus
-aplicativos instalados.
+O App Manager é uma ferramenta projetada para simplificar a gestão de aplicativos em sistemas operacionais Windows.
+Com interface intuitiva, este aplicativo oferece uma maneira conveniente e centralizada de gerenciar 
+e acessar todos os seus aplicativos instalados.
 
 ## Principais Recursos:
+{collapsible="true" default-state="expanded"}
 
 - **Visualização Organizada**: O aplicativo apresenta visualização de todos os aplicativos instalados no sistema, 
 que já foram mapeados, facilitando a localização e o acesso rápido aos programas desejados.
 
-- **Pesquisa Rápida**: Com a funcionalidade de pesquisa integrada, os usuários podem encontrar facilmente aplicativos específicos,
-apenas digitando parte do nome ou palavra-chave relacionada. (Em breve)
 
-- **Categorias Personalizadas**: Os aplicativos podem ser organizados em categorias personalizadas para uma navegação mais intuitiva e eficiente,
+- **Categorias Personalizadas**: Os aplicativos podem ser organizados em categorias personalizadas,
 permitindo que os usuários agrupem aplicativos de acordo com suas preferências e necessidades específicas.
 
-- **Favoritos**: O aplicativo oferece a capacidade de criar atalhos personalizados para aplicativos frequentemente usados,
-facilitando o acesso rápido a eles.
+
+- **Pesquisa Rápida**: Com a funcionalidade de pesquisa integrada,
+os usuários podem encontrar facilmente aplicativos específicos,
+apenas digitando parte do nome ou palavra-chave relacionada. **(Em breve)**
 
 - **Personalização Avançada**: O aplicativo oferece opções de personalização avançadas,
-permitindo que os usuários ajustem o layout, as cores e outras configurações de acordo com suas preferências individuais. (Em breve)
+permitindo que os usuários ajustem o layout, cores e outras configurações,
+de acordo com suas preferências individuais. **(Em breve)**
 
 ## Benefícios:
+{collapsible="true" default-state="collapsed"}
 
 - **Eficiência**: Economiza tempo e esforço dos usuários.
+
 
 - **Praticidade**: Simplifica a gestão de aplicativos, gerindo todos em um só lugar.
 
 ## Tecnologias Utilizadas:
-Flutter para desenvolvimento(windows) e até o momento nenhum pacote em especifico.
+{collapsible="true" default-state="collapsed"}
+
+### [Flutter]()
+### libs:
+
+[path_provider: ^2.1.3]()
+[window_manager: ^0.3.8]()
+[flutter_svg: ^2.0.10+1]()
+
 
 ## Como Usar:
 
