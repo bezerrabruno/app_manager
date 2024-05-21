@@ -1,8 +1,12 @@
-# App Manager v1.0.2
+# App Manager v1.1.3
 
 O App Manager é uma ferramenta projetada para simplificar a gestão de aplicativos em sistemas operacionais Windows.
 Com interface intuitiva, este aplicativo oferece uma maneira conveniente e centralizada de gerenciar 
 e acessar todos os seus aplicativos instalados.
+
+## Exemplos:
+
+![Exemplo](./example/app_manager_example.png)
 
 ## Principais Recursos:
 - **Visualização Organizada**: O aplicativo apresenta visualização de todos os aplicativos instalados no sistema, 
@@ -27,6 +31,43 @@ de acordo com suas preferências individuais. **(Em breve)**
 
 - **Praticidade**: Simplifica a gestão de aplicativos, gerindo todos em um só lugar.
 
+## Como Configurar:
+
+- O usuario devera copiar o esquema de pastas e arquivos que estão localizados dentro de example.
+(Se quiser gerar um novo build os arquivos copiados deveram ser os scripts, logos, config.json).
+
+- Ajustar o config.json para o que quer que reflita dentro do app.
+
+- Dentro da pasta scrips devera copiar um script e simplesmente trocar o path.
+
+- Dentro da pasta icons colocar todos os icons q seram ultilizados.
+
+## Como Usar:
+
+- O usuario devera entrar no app e então escolher o app que deseja abrir, o aplicativo abrira o app e fechara sozinho.
+
+## Comandos pertinentes:
+
+```bash
+flutter clean
+```
+
+```bash
+flutter pub get
+```
+
+```bash
+flutter config --enable-windows-desktop
+```
+
+```bash
+flutter run -d windows
+```
+
+```bash
+flutter build windows
+```
+
 ## Linguagens Utilizadas:
 * [Flutter](https://flutter.dev/?gclsrc=aw.ds)
 
@@ -35,13 +76,8 @@ de acordo com suas preferências individuais. **(Em breve)**
 * [window_manager: ^0.3.8](https://pub.dev/packages/window_manager)
 * [flutter_svg: ^2.0.10+1](https://pub.dev/packages/flutter_svg)
 
-## Como Usar:
-
-(Em breve)
-
-## Exemplos:
-
-(Em breve)
+## Site Para Imagens:
+* [Icons8](https://icons8.com.br/)
 
 ## Contato:
 

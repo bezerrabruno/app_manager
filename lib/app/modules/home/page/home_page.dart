@@ -1,7 +1,5 @@
 import 'package:app_manager/app/core/enums/page_state_enum.dart';
-import 'package:app_manager/app/core/widgets/app_custom_scroll.dart';
 import 'package:app_manager/app/modules/home/controller/home_controller.dart';
-import 'package:app_manager/app/modules/home/widget/home_card.dart';
 import 'package:app_manager/app/modules/home/widget/home_section.dart';
 import 'package:flutter/material.dart';
 
@@ -43,90 +41,95 @@ class _HomePageState extends State<HomePage> {
                   'Algo aconteceu, tente novamente.',
                   style: TextStyle(
                     fontSize: 28,
-                    color: colors.onBackground,
+                    color: colors.primary,
                   ),
                 ),
               );
 
             case PageStateEnum.success:
-              return Column(
-                children: <Widget>[
-                  Center(
-                    child: Text(
-                      'App Manager',
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: colors.onBackground,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 32),
-                  HomeSection(
-                    title: 'Dev',
-                    apps: controller.dev,
-                    onTap: (value) => controller.tap(context, value),
-                  ),
-                  const SizedBox(height: 32),
-                  HomeSection(
-                    title: 'Software',
-                    apps: controller.software,
-                    onTap: (value) => controller.tap(context, value),
-                  ),
-                  const SizedBox(height: 32),
-                  HomeSection(
-                    title: 'Hardware',
-                    apps: controller.hardware,
-                    onTap: (value) => controller.tap(context, value),
-                  ),
-                  const SizedBox(height: 32),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Games',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: colors.onBackground,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: ScrollConfiguration(
-                      behavior: AppCustomScroll(),
-                      child: GridView.builder(
-                        itemCount: controller.game.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          crossAxisSpacing: 4.0,
-                          mainAxisSpacing: 4.0,
-                        ),
-                        itemBuilder: (BuildContext context, int index) {
-                          return Align(
-                            alignment: Alignment.topCenter,
-                            child: HomeCard(
-                              image: controller.game.elementAt(index).logo,
-                              name: controller.game.elementAt(index).name,
-                              onTap: () => controller.tap(context,
-                                  controller.game.elementAt(index).script),
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Center(
+                          child: Text(
+                            'App Manager',
+                            style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              color: colors.primary,
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: InkWell(
+                                onTap: () => controller.launchURL(),
+                                child: Text(
+                                  'Icons by Icons8',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: colors.primary,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () => setState(() {}),
+                              icon: Icon(
+                                Icons.update,
+                                color: colors.primary,
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () => controller.closeApp(),
+                              icon: Icon(
+                                Icons.close,
+                                color: colors.primary,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: IconButton(
-                        onPressed: () => setState(() {}),
-                        icon: const Icon(Icons.update)),
-                  ),
-                ],
+                    const SizedBox(height: 40),
+                    HomeSection(
+                      title: 'Dev',
+                      flex: 2,
+                      apps: controller.dev,
+                      onTap: (value) => controller.tap(context, value),
+                    ),
+                    const SizedBox(height: 40),
+                    HomeSection(
+                      title: 'Software',
+                      flex: 2,
+                      apps: controller.software,
+                      onTap: (value) => controller.tap(context, value),
+                    ),
+                    const SizedBox(height: 40),
+                    HomeSection(
+                      title: 'Hardware',
+                      flex: 2,
+                      apps: controller.hardware,
+                      onTap: (value) => controller.tap(context, value),
+                    ),
+                    const SizedBox(height: 40),
+                    HomeSection(
+                      title: 'Games',
+                      flex: 4,
+                      apps: controller.game,
+                      onTap: (value) => controller.tap(context, value),
+                    ),
+                  ],
+                ),
               );
           }
         },
