@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:app_manager/app/core/enums/page_state_enum.dart';
 import 'package:app_manager/app/domain/entities/config_entity.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:process_run/shell.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -59,22 +60,17 @@ class HomeController extends ChangeNotifier {
   }
 
   Future<void> tap(BuildContext context, String path) async {
-    await Process.run('$_localPath\\$path', []).then((ProcessResult results) {
-      String output = results.stdout.toString();
-      String error = results.stderr.toString();
+    var shell = Shell();
 
-      if (output.isNotEmpty) {
-        debugPrint('Saída do script CMD: $output');
-      }
+    try {
+      shell.run('$_localPath\\shortcut\\$path');
 
-      if (error.isNotEmpty) {
-        debugPrint('Erro ao executar o script CMD: $error');
-      }
-    }).catchError((error) {
+      await Future.delayed(const Duration(seconds: 2));
+
+      closeApp();
+    } catch (error) {
       debugPrint('Erro ao executar o script CMD: $error');
-    });
-
-    closeApp();
+    }
   }
 
   void closeApp() => windowManager.close();

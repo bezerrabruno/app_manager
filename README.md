@@ -33,14 +33,16 @@ de acordo com suas preferências individuais. **(Em breve)**
 
 ## Como Configurar:
 
-- O usuario devera copiar o esquema de pastas e arquivos que estão localizados dentro de example.
+- Comece copiando o esquema de pastas e arquivos que estão localizados dentro de example.
 (Se quiser gerar um novo build os arquivos copiados deveram ser os scripts, logos, config.json).
 
-- Ajustar o config.json para o que quer que reflita dentro do app.
+- Lembre que o diretorio deve estar em: C:\my_apps\app_manager.
 
-- Dentro da pasta scrips devera copiar um script e simplesmente trocar o path.
+- Coloque todos os atalhos dentro da pasta **shortcut**
 
-- Dentro da pasta icons colocar todos os icons q seram ultilizados.
+- Coloque todos os icones dentro da pasta **icons**
+
+- Ajuste o config.json para o que quer que reflita dentro do app.
 
 ## Como Usar:
 
@@ -61,6 +63,10 @@ flutter config --enable-windows-desktop
 ```
 
 ```bash
+flutter create --platforms=windows,macos,linux .
+```
+
+```bash
 flutter run -d windows
 ```
 
@@ -73,6 +79,7 @@ flutter build windows
 
 ## Libs Utilizadas:
 * [path_provider: ^2.1.3](https://pub.dev/packages/path_provider)
+* [url_launcher: ^6.2.6](https://pub.dev/packages/url_launcher)
 * [window_manager: ^0.3.8](https://pub.dev/packages/window_manager)
 * [flutter_svg: ^2.0.10+1](https://pub.dev/packages/flutter_svg)
 
