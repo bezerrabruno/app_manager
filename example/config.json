@@ -1,70 +1,30 @@
 {
   "dev": [
     {
-      "name": "Epic Games",
+      "name": "dev",
       "logo": "image.png",
-      "script": "scripts/epic.cmd"
-    },
-    {
-      "name": "Steam",
-      "logo": "image.png",
-      "script": "scripts/steam.cmd"
-    },
-    {
-      "name": "Google Play",
-      "logo": "image.png",
-      "script": "scripts/google_play.cmd"
+      "script": "link_app.lnk"
     }
   ],
   "softwares": [
     {
-      "name": "Epic Games",
+      "name": "softwares",
       "logo": "image.png",
-      "script": "scripts/epic.cmd"
-    },
-    {
-      "name": "Steam",
-      "logo": "image.png",
-      "script": "scripts/steam.cmd"
-    },
-    {
-      "name": "Google Play",
-      "logo": "image.png",
-      "script": "scripts/google_play.cmd"
+      "script": "link_app.lnk"
     }
   ],
   "hardwares": [
     {
-      "name": "Epic Games",
+      "name": "hardwares",
       "logo": "image.png",
-      "script": "scripts/epic.cmd"
-    },
-    {
-      "name": "Steam",
-      "logo": "image.png",
-      "script": "scripts/steam.cmd"
-    },
-    {
-      "name": "Google Play",
-      "logo": "image.png",
-      "script": "scripts/google_play.cmd"
+      "script": "link_app.lnk"
     }
   ],
   "games": [
     {
-      "name": "Epic Games",
+      "name": "games",
       "logo": "image.png",
-      "script": "scripts/epic.cmd"
-    },
-    {
-      "name": "Steam",
-      "logo": "image.png",
-      "script": "scripts/steam.cmd"
-    },
-    {
-      "name": "Google Play",
-      "logo": "image.png",
-      "script": "scripts/google_play.cmd"
+      "script": "link_app.lnk"
     }
   ]
 }
