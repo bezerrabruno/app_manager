@@ -65,7 +65,7 @@ class HomeController extends ChangeNotifier {
     try {
       shell.run('$_localPath\\shortcut\\$path');
 
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 1));
 
       closeApp();
     } catch (error) {
