@@ -1,30 +1,14 @@
 {
-  "dev": [
+  "tabs": [
     {
-      "name": "dev",
-      "logo": "image.png",
-      "script": "link_app.lnk"
-    }
-  ],
-  "softwares": [
-    {
-      "name": "softwares",
-      "logo": "image.png",
-      "script": "link_app.lnk"
-    }
-  ],
-  "hardwares": [
-    {
-      "name": "hardwares",
-      "logo": "image.png",
-      "script": "link_app.lnk"
-    }
-  ],
-  "games": [
-    {
-      "name": "games",
-      "logo": "image.png",
-      "script": "link_app.lnk"
+      "tab": "tab",
+      "apps": [
+        {
+          "name": "name",
+          "icon": "icon.png",
+          "link": "link.lnk"
+        }
+      ]
     }
   ]
 }

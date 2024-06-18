@@ -1,18 +1,16 @@
 import 'package:app_manager/app/core/widgets/app_custom_scroll.dart';
-import 'package:app_manager/app/domain/entities/config_entity.dart';
+import 'package:app_manager/app/domain/entities/app_entity.dart';
 import 'package:app_manager/app/modules/home/widget/home_card.dart';
 import 'package:flutter/material.dart';
 
 class HomeSection extends StatelessWidget {
   final String title;
-  final int flex;
   final List<AppEntity> apps;
   final Function(String) onTap;
 
   const HomeSection({
     super.key,
     required this.title,
-    required this.flex,
     required this.apps,
     required this.onTap,
   });
@@ -22,7 +20,7 @@ class HomeSection extends StatelessWidget {
     ColorScheme colors = Theme.of(context).colorScheme;
 
     return Expanded(
-      flex: flex,
+      flex: 2,
       child: Column(
         children: [
           Align(
@@ -50,8 +48,10 @@ class HomeSection extends StatelessWidget {
                   return Align(
                     alignment: Alignment.topCenter,
                     child: HomeCard(
-                      image: apps.elementAt(index).logo,
-                      onTap: () => onTap(apps.elementAt(index).script),
+                      image: apps.elementAt(index).icon,
+                      onTap: () => onTap(
+                        apps.elementAt(index).link,
+                      ),
                     ),
                   );
                 },

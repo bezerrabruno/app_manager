@@ -1,19 +1,24 @@
-class AppEntity {
-  final String name;
-  final String logo;
-  final String script;
+import 'package:app_manager/app/domain/entities/app_entity.dart';
 
-  AppEntity({
-    required this.name,
-    required this.logo,
-    required this.script,
+class ConfigEntity {
+  final String tab;
+  final List<AppEntity> apps;
+
+  ConfigEntity({
+    required this.tab,
+    required this.apps,
   });
 
-  factory AppEntity.fromMap(Map<String, dynamic> map) {
-    return AppEntity(
-      name: map['name'] as String,
-      logo: map['logo'] as String,
-      script: map['script'] as String,
+  factory ConfigEntity.fromMap(Map<String, dynamic> map) {
+    final apps = <AppEntity>[];
+
+    for (final item in map['apps']) {
+      apps.add(AppEntity.fromMap(item));
+    }
+
+    return ConfigEntity(
+      tab: map['tab'] as String,
+      apps: apps,
     );
   }
 }

@@ -6,10 +6,14 @@ class HomeCard extends StatelessWidget {
   final String image;
   final Function() onTap;
 
-  const HomeCard({super.key, required this.image, required this.onTap});
+  const HomeCard({
+    super.key,
+    required this.image,
+    required this.onTap,
+  });
 
   File file() {
-    return File(image);
+    return File('C:\\Dev\\app_manager\\icons\\$image');
   }
 
   @override

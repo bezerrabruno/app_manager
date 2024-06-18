@@ -1,5 +1,5 @@
-# App Manager v1.1.3+2
-**(atualizado em: 27/05/2024)**
+# App Manager v1.3.1
+**(atualizado em: 18/06/2024)**
 
 O App Manager é uma ferramenta projetada para simplificar a gestão de aplicativos em sistemas operacionais Windows.
 Com interface intuitiva, este aplicativo oferece uma maneira conveniente e centralizada de gerenciar 
@@ -37,7 +37,7 @@ de acordo com suas preferências individuais. **(Em breve)**
 - Comece copiando o esquema de pastas e arquivos que estão localizados dentro de example.
 (Se quiser gerar um novo build os arquivos copiados deveram ser os scripts, logos, config.json).
 
-- Lembre que o diretorio deve estar em: C:\my_apps\app_manager.
+- Lembre que o diretorio deve estar em: C:\dev\app_manager.
 
 - Coloque todos os atalhos dentro da pasta **shortcut**
 

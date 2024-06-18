@@ -9,46 +9,41 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:window_manager/window_manager.dart';
 
 class HomeController extends ChangeNotifier {
-  late final String _localPath;
-
   /// Vars
+  late final String _localPath;
+  late final AnimationController animationController;
+
+  final List<ConfigEntity> config = [];
+
   PageStateEnum _pageState = PageStateEnum.load;
 
   /// Uses
   PageStateEnum get pageState => _pageState;
 
-  List<AppEntity> dev = [];
-  List<AppEntity> software = [];
-  List<AppEntity> hardware = [];
-  List<AppEntity> game = [];
-
-  Future<void> init() async {
+  Future<void> init(TickerProvider vsync) async {
     try {
       _pageState = PageStateEnum.load;
       notifyListeners();
 
-      _localPath = 'C:\\my_apps\\app_manager';
+      animationController = AnimationController(
+        duration: const Duration(seconds: 1),
+        vsync: vsync,
+      );
+
+      _localPath = 'C:\\Dev\\app_manager';
 
       File jsonsPath = File('$_localPath\\config.json');
 
       String jsonsString = await jsonsPath.readAsString();
 
-      final config = jsonDecode(jsonsString);
+      final configJson = jsonDecode(jsonsString);
 
-      for (final item in config['dev']) {
-        dev.add(AppEntity.fromMap(item));
+      if ((configJson['tabs'] as List).isEmpty) {
+        _pageState = PageStateEnum.empty;
       }
 
-      for (final item in config['softwares']) {
-        software.add(AppEntity.fromMap(item));
-      }
-
-      for (final item in config['hardwares']) {
-        hardware.add(AppEntity.fromMap(item));
-      }
-
-      for (final item in config['games']) {
-        game.add(AppEntity.fromMap(item));
+      for (final item in configJson['tabs']) {
+        config.add(ConfigEntity.fromMap(item));
       }
 
       _pageState = PageStateEnum.success;
@@ -67,13 +62,23 @@ class HomeController extends ChangeNotifier {
 
       await Future.delayed(const Duration(seconds: 1));
 
-      closeApp();
+      minimizeApp();
     } catch (error) {
       debugPrint('Erro ao executar o script CMD: $error');
     }
   }
 
+  Future<void> reload() async {
+    animationController.forward();
+
+    await Future.delayed(const Duration(seconds: 1));
+
+    animationController.reverse();
+  }
+
   void closeApp() => windowManager.close();
+
+  void minimizeApp() => windowManager.minimize();
 
   void launchURL() async {
     Uri uri = Uri.parse('https://icons8.com.br');

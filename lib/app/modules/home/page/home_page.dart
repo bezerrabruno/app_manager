@@ -1,4 +1,5 @@
 import 'package:app_manager/app/core/enums/page_state_enum.dart';
+import 'package:app_manager/app/core/widgets/state_message.dart';
 import 'package:app_manager/app/modules/home/controller/home_controller.dart';
 import 'package:app_manager/app/modules/home/widget/home_section.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +11,13 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  final HomeController controller = HomeController();
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  final HomeController _controller = HomeController();
 
   @override
   void initState() {
-    controller.init();
+    _controller.init(this);
 
     super.initState();
   }
@@ -25,114 +27,108 @@ class _HomePageState extends State<HomePage> {
     ColorScheme colors = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: colors.background,
-      body: ListenableBuilder(
-        listenable: controller,
-        builder: (context, _) {
-          switch (controller.pageState) {
-            case PageStateEnum.load:
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            case PageStateEnum.empty:
-            case PageStateEnum.error:
-              return Center(
-                child: Text(
-                  'Algo aconteceu, tente novamente.',
+      backgroundColor: colors.inverseSurface,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 8,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'App Manager',
                   style: TextStyle(
                     fontSize: 28,
+                    fontWeight: FontWeight.bold,
                     color: colors.primary,
                   ),
                 ),
-              );
-
-            case PageStateEnum.success:
-              return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Center(
-                          child: Text(
-                            'App Manager',
-                            style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              color: colors.primary,
-                            ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    InkWell(
+                      borderRadius: BorderRadius.circular(20),
+                      onTap: () => _controller.launchURL(),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Icons by Icons8',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: colors.primary,
                           ),
                         ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: InkWell(
-                                onTap: () => controller.launchURL(),
-                                child: Text(
-                                  'Icons by Icons8',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: colors.primary,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () => setState(() {}),
-                              icon: Icon(
-                                Icons.update,
-                                color: colors.primary,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () => controller.closeApp(),
-                              icon: Icon(
-                                Icons.close,
-                                color: colors.primary,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                      ),
                     ),
-                    const SizedBox(height: 40),
-                    HomeSection(
-                      title: 'Dev',
-                      flex: 2,
-                      apps: controller.dev,
-                      onTap: (value) => controller.tap(context, value),
+                    IconButton(
+                      onPressed: () async {
+                        await _controller.reload();
+
+                        setState(() {});
+                      },
+                      icon: AnimatedIcon(
+                        icon: AnimatedIcons.play_pause,
+                        color: colors.primary,
+                        progress: _controller.animationController,
+                      ),
                     ),
-                    const SizedBox(height: 40),
-                    HomeSection(
-                      title: 'Software',
-                      flex: 2,
-                      apps: controller.software,
-                      onTap: (value) => controller.tap(context, value),
-                    ),
-                    const SizedBox(height: 40),
-                    HomeSection(
-                      title: 'Hardware',
-                      flex: 2,
-                      apps: controller.hardware,
-                      onTap: (value) => controller.tap(context, value),
-                    ),
-                    const SizedBox(height: 40),
-                    HomeSection(
-                      title: 'Games',
-                      flex: 4,
-                      apps: controller.game,
-                      onTap: (value) => controller.tap(context, value),
+                    IconButton(
+                      onPressed: () => _controller.closeApp(),
+                      icon: Icon(
+                        Icons.close,
+                        color: colors.primary,
+                      ),
                     ),
                   ],
                 ),
-              );
-          }
-        },
+              ],
+            ),
+            Expanded(
+              child: ListenableBuilder(
+                listenable: _controller,
+                builder: (context, _) {
+                  switch (_controller.pageState) {
+                    case PageStateEnum.load:
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+
+                    case PageStateEnum.empty:
+                      return const StateMessage(
+                        message: 'Adicione algum item ao json.',
+                      );
+
+                    case PageStateEnum.error:
+                      return const StateMessage(
+                        message: 'Algo aconteceu, tente novamente.',
+                      );
+
+                    case PageStateEnum.success:
+                      return Column(
+                        children: List.generate(
+                          _controller.config.length,
+                          (index) {
+                            final item = _controller.config.elementAt(index);
+
+                            return HomeSection(
+                              title: item.tab,
+                              apps: item.apps,
+                              onTap: (path) => _controller.tap(context, path),
+                            );
+                          },
+                        ),
+                      );
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
