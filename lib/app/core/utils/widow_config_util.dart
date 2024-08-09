@@ -4,7 +4,7 @@ import 'package:window_manager/window_manager.dart';
 class WidowConfigUtil {
   static void widowsConfig() {
     WindowOptions windowOptions = const WindowOptions(
-      size: Size(800, 800),
+      size: Size(900, 900),
       center: true,
       backgroundColor: Colors.transparent,
       skipTaskbar: false,

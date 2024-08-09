@@ -1,5 +1,5 @@
 # App Manager v1.3.1
-**(atualizado em: 18/06/2024)**
+**(atualizado em: 09/08/2024)**
 
 O App Manager é uma ferramenta projetada para simplificar a gestão de aplicativos em sistemas operacionais Windows.
 Com interface intuitiva, este aplicativo oferece uma maneira conveniente e centralizada de gerenciar 
