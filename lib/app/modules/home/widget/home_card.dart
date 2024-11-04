@@ -12,10 +12,6 @@ class HomeCard extends StatelessWidget {
     required this.onTap,
   });
 
-  File file() {
-    return File('C:\\Dev\\app_manager\\icons\\$image');
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,7 +20,7 @@ class HomeCard extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(80),
         child: Image.file(
-          file(),
+          File(image),
           fit: BoxFit.fitHeight,
         ),
       ),

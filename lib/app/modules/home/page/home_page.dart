@@ -5,19 +5,18 @@ import 'package:app_manager/app/modules/home/widget/home_section.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final HomeController controller;
+
+  const HomePage({super.key, required this.controller});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
-  final HomeController _controller = HomeController();
-
+class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    _controller.init(this);
+    widget.controller.initConfig(context);
 
     super.initState();
   }
@@ -27,7 +26,7 @@ class _HomePageState extends State<HomePage>
     ColorScheme colors = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: colors.inverseSurface,
+      backgroundColor: colors.surface,
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -52,7 +51,7 @@ class _HomePageState extends State<HomePage>
                   children: [
                     InkWell(
                       borderRadius: BorderRadius.circular(20),
-                      onTap: () => _controller.launchURL(),
+                      onTap: () => widget.controller.launchURL(),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
@@ -66,19 +65,25 @@ class _HomePageState extends State<HomePage>
                       ),
                     ),
                     IconButton(
-                      onPressed: () async {
-                        await _controller.reload();
-
-                        setState(() {});
-                      },
-                      icon: AnimatedIcon(
-                        icon: AnimatedIcons.play_pause,
+                      onPressed: () => widget.controller.configPathApp(context),
+                      icon: Icon(
+                        Icons.settings,
                         color: colors.primary,
-                        progress: _controller.animationController,
+                      ),
+                    ),
+                    Center(
+                      child: IconButton(
+                        onPressed: () => widget.controller.minimizeApp(),
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.only(bottom: 16),
+                        icon: Icon(
+                          Icons.minimize,
+                          color: colors.primary,
+                        ),
                       ),
                     ),
                     IconButton(
-                      onPressed: () => _controller.closeApp(),
+                      onPressed: () => widget.controller.closeApp(),
                       icon: Icon(
                         Icons.close,
                         color: colors.primary,
@@ -90,17 +95,17 @@ class _HomePageState extends State<HomePage>
             ),
             Expanded(
               child: ListenableBuilder(
-                listenable: _controller,
+                listenable: widget.controller,
                 builder: (context, _) {
-                  switch (_controller.pageState) {
+                  switch (widget.controller.pageState) {
                     case PageStateEnum.load:
-                      return const Center(
-                        child: CircularProgressIndicator(),
+                      return const StateMessage(
+                        message: 'Carregando Informações...',
                       );
 
                     case PageStateEnum.empty:
                       return const StateMessage(
-                        message: 'Adicione algum item ao json.',
+                        message: 'Adicione algum item ao json de configuração.',
                       );
 
                     case PageStateEnum.error:
@@ -111,14 +116,17 @@ class _HomePageState extends State<HomePage>
                     case PageStateEnum.success:
                       return Column(
                         children: List.generate(
-                          _controller.config.length,
+                          widget.controller.tabs.length,
                           (index) {
-                            final item = _controller.config.elementAt(index);
+                            final item =
+                                widget.controller.tabs.elementAt(index);
 
                             return HomeSection(
-                              title: item.tab,
+                              title: item.name,
+                              pathIcon: widget.controller.getIcons(),
                               apps: item.apps,
-                              onTap: (path) => _controller.tap(context, path),
+                              onTap: (path) =>
+                                  widget.controller.tap(context, path),
                             );
                           },
                         ),

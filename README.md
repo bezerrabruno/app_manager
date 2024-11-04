@@ -1,5 +1,5 @@
-# App Manager v1.3.1
-**(atualizado em: 09/08/2024)**
+# App Manager v1.4.1
+**(atualizado em: 04/11/2024)**
 
 O App Manager é uma ferramenta projetada para simplificar a gestão de aplicativos em sistemas operacionais Windows.
 Com interface intuitiva, este aplicativo oferece uma maneira conveniente e centralizada de gerenciar 
@@ -37,13 +37,11 @@ de acordo com suas preferências individuais. **(Em breve)**
 - Comece copiando o esquema de pastas e arquivos que estão localizados dentro de example.
 (Se quiser gerar um novo build os arquivos copiados deveram ser os scripts, logos, config.json).
 
-- Lembre que o diretorio deve estar em: C:\dev\app_manager.
-
 - Coloque todos os atalhos dentro da pasta **shortcut**
 
 - Coloque todos os icones dentro da pasta **icons**
 
-- Ajuste o config.json para o que quer que reflita dentro do app.
+- Ajuste o config.json para o que queira que seja refletido dentro do app.
 
 ## Como Usar:
 
@@ -76,13 +74,14 @@ flutter build windows
 ```
 
 ## Linguagens Utilizadas:
-* [Flutter](https://flutter.dev/?gclsrc=aw.ds)
+* [Flutter: 3.24.3](https://flutter.dev/?gclsrc=aw.ds)
 
 ## Libs Utilizadas:
-* [path_provider: ^2.1.3](https://pub.dev/packages/path_provider)
-* [url_launcher: ^6.2.6](https://pub.dev/packages/url_launcher)
-* [window_manager: ^0.3.8](https://pub.dev/packages/window_manager)
-* [flutter_svg: ^2.0.10+1](https://pub.dev/packages/flutter_svg)
+* [process_run: ^1.2.2](https://pub.dev/packages/process_run)
+* [url_launcher: ^6.3.1](https://pub.dev/packages/url_launcher)
+* [window_manager: ^0.4.3](https://pub.dev/packages/window_manager)
+* [shared_preferences: ^2.3.2](https://pub.dev/packages/shared_preferences)
+* [flutter_svg: ^2.0.11](https://pub.dev/packages/flutter_svg)
 
 ## Site Para Imagens:
 * [Icons8](https://icons8.com.br/)

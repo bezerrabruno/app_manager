@@ -1,16 +1,19 @@
 import 'package:app_manager/app/core/widgets/app_custom_scroll.dart';
-import 'package:app_manager/app/domain/entities/app_entity.dart';
+import 'package:app_manager/app/domain/entities/shortcut_entity.dart';
 import 'package:app_manager/app/modules/home/widget/home_card.dart';
 import 'package:flutter/material.dart';
 
 class HomeSection extends StatelessWidget {
   final String title;
-  final List<AppEntity> apps;
+  final String pathIcon;
+
+  final List<ShortcutEntity> apps;
   final Function(String) onTap;
 
   const HomeSection({
     super.key,
     required this.title,
+    required this.pathIcon,
     required this.apps,
     required this.onTap,
   });
@@ -48,9 +51,9 @@ class HomeSection extends StatelessWidget {
                   return Align(
                     alignment: Alignment.topCenter,
                     child: HomeCard(
-                      image: apps.elementAt(index).icon,
+                      image: '$pathIcon\\${apps.elementAt(index).icon}',
                       onTap: () => onTap(
-                        apps.elementAt(index).link,
+                        apps.elementAt(index).lnk,
                       ),
                     ),
                   );
