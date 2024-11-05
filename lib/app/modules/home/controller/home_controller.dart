@@ -63,10 +63,10 @@ class HomeController extends ChangeNotifier {
   }
 
   Future<void> tap(BuildContext context, String pathTap) async {
-    var shell = Shell();
+    var shell = Shell(workingDirectory: '$_pathLocal\\shortcut');
 
     try {
-      shell.run('$_pathLocal\\shortcut\\$pathTap');
+      shell.run(pathTap);
 
       await Future.delayed(const Duration(seconds: 1));
 
